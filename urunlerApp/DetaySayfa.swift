@@ -8,22 +8,29 @@
 import UIKit
 
 class DetaySayfa: UIViewController {
-
+    @IBOutlet weak var urunImageView: UIImageView!
+    @IBOutlet weak var fiyatLabel: UILabel!
+    
+    var urun:Urunler?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let u = urun {
+            self.navigationItem.title = u.ad
+            urunImageView.image = UIImage(named: u.resim!)
+            fiyatLabel.text = "\(u.fiyat!) ₺"
+        }
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func sepeteEkleButton(_ sender: Any) {
+        if let u = urun {
+            print("detay sayfa \(u.ad!) sepete eklendi")
+        }
     }
-    */
+    
+  
 
 }
