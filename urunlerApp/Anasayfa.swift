@@ -42,7 +42,7 @@ class Anasayfa: UIViewController {
 }
 
 
-extension Anasayfa : UITableViewDelegate, UITableViewDataSource {
+extension Anasayfa : UITableViewDelegate, UITableViewDataSource, HucreProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return urunListesi.count
     }
@@ -57,6 +57,9 @@ extension Anasayfa : UITableViewDelegate, UITableViewDataSource {
         hucre.backgroundColor = UIColor(white: 0.95, alpha: 1) // hücrenin arka plan rengini ayarlama
         hucre.hucreView.layer.cornerRadius = 20
         hucre.selectionStyle = .none //seçime tıklandığında işaretlemeyi kaldırma
+        
+        hucre.hucreProtocol = self //anasayfaya değeri aktarıyoruz
+        hucre.indexPath = indexPath
         return hucre
     }
     
@@ -84,5 +87,10 @@ extension Anasayfa : UITableViewDelegate, UITableViewDataSource {
                 gidilecekVC.urun = urun
             }
         }
+    }
+    
+    func sepeteEkleTiklandi(indexPath: IndexPath) {
+        let urun = urunListesi[indexPath.row]
+        print("\(urun.ad!) sepete eklendi")
     }
 }
